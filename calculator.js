@@ -111,3 +111,8 @@ console.log(res2);
     // Otherwise indexes will be off for multi-digit numbers within
     // Alternatively mergenums BEFORE getting indexes of parens
 // Practice writing better tests
+
+// BIG BUG
+  // Currently finding first instance of '('
+  // Need to actually find the one right before its corresponding ')'
+  // Multi paren expressions will fail
