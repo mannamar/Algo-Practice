@@ -1,5 +1,4 @@
-// WIP: Evaluate mathematical expression
-// https://www.codewars.com/kata/52a78825cdfc2cfc87000005/train/javascript
+// Evaluate mathematical expressions
 
 
 // Lookup variables
@@ -121,14 +120,5 @@ let test5 = '(1 - 2) + -(-(-(-4)))';
 let res5 = calc(test5);
 console.log(res5);
 
-
-
-// Sleep on and come back tomorrow
-
-// Still need to account for negative before parens
-    // May need to be checked after every parens loop
-    // New helper function?
-// Need to mergenums before the parens while loop
-    // Otherwise indexes will be off for multi-digit numbers within
-    // Alternatively mergenums BEFORE getting indexes of parens
+// TO DO
 // Practice writing better tests
