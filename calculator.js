@@ -28,15 +28,27 @@ const calc = function (expression) {
   // Split expression into individual charachters
   let split = nospaces.split('');
 
-  // Merge consecutive digits
-  mergenums(split);
-  console.log(split);
-
   // While parens exist
     // Find index of first ')'
     // Find index of preceeeding '('
     // Evaluate expression between the two
     // Splice result back into main array
+  while (split.includes(')')) {
+    let idxClose = split.indexOf(')');
+    let idxOpen = split.indexOf('(');
+    console.log('idx', idxOpen, idxClose);
+    let slice = split.slice(idxOpen + 1, idxClose);
+    console.log('slice', slice)
+    mergenums(slice);
+    evaluate(slice, ['*', '/']);
+    evaluate(slice, ['+', '-']);
+    console.log('sliced', slice[0]);
+    split.splice(idxOpen, idxClose - idxOpen + 1, slice[0]);
+  }
+
+  // Merge consecutive digits
+  mergenums(split);
+  console.log(split);
 
   // Evaluate mult/div
   evaluate(split, ['*', '/']);
@@ -85,21 +97,17 @@ let test1 = '2+5*2';
 let res1 = calc(test1);
 console.log(res1);
 
+let test2 = '12* 123/(-5 + 2)';
+let res2 = calc(test2);
+console.log(res2);
 
-// Still need to account for parens
-// Possible ideas:
 
-// Split on parens
-// Call calc within its own definition (Recursion?)
-// If parens exist
-    // Call calc on slice of items between innermost parens
-    // Splice in result
-    // Repeat while parens exist
+// Sleep on and come back tomorrow
 
-// Non-recursive idea:
-// While parens exist
-    // Call evaluate(s) on slice of items between innermost set of parens
-    // Splice in the result
-
-// Non-recursive seems easier to code
-// All edge cases accounted for?
+// Still need to account for negative before parens
+    // May need to be checked after every parens loop
+    // New helper function?
+// Need to mergenums before the parens while loop
+    // Otherwise indexes will be off for multi-digit numbers within
+    // Alternatively mergenums BEFORE getting indexes of parens
+// Practice writing better tests
