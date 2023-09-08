@@ -35,7 +35,7 @@ const calc = function (expression) {
     // Splice result back into main array
   while (split.includes(')')) {
     let idxClose = split.indexOf(')');
-    let idxOpen = split.indexOf('(');
+    let idxOpen = split.slice(0,idxClose).lastIndexOf('(');
     console.log('idx', idxOpen, idxClose);
     let slice = split.slice(idxOpen + 1, idxClose);
     console.log('slice', slice)
@@ -97,7 +97,7 @@ let test1 = '2+5*2';
 let res1 = calc(test1);
 console.log(res1);
 
-let test2 = '12* 123/(-5 + 2)';
+let test2 = '(12* 123/(-5 + 2))';
 let res2 = calc(test2);
 console.log(res2);
 
@@ -111,8 +111,3 @@ console.log(res2);
     // Otherwise indexes will be off for multi-digit numbers within
     // Alternatively mergenums BEFORE getting indexes of parens
 // Practice writing better tests
-
-// BIG BUG
-  // Currently finding first instance of '('
-  // Need to actually find the one right before its corresponding ')'
-  // Multi paren expressions will fail
