@@ -3,7 +3,7 @@
 
 
 // Lookup variables
-let ops = ['*', '/', '+', '-'];
+let ops = ['*', '/', '+', '-', '(', ')'];
 let opFuncs = {
   '*': function mult(a, b) {
     return Number(a) * Number(b);
@@ -28,6 +28,10 @@ const calc = function (expression) {
   // Split expression into individual charachters
   let split = nospaces.split('');
 
+  // Merge consecutive digits
+  mergenums(split);
+  console.log(split);
+
   // While parens exist
     // Find index of first ')'
     // Find index of preceeeding '('
@@ -44,6 +48,7 @@ const calc = function (expression) {
     evaluate(slice, ['+', '-']);
     console.log('sliced', slice[0]);
     split.splice(idxOpen, idxClose - idxOpen + 1, slice[0]);
+    mergenums(split);
   }
 
   // Merge consecutive digits
@@ -83,12 +88,15 @@ function mergenums(arr) {
     if (!ops.includes(arr[i]) && !ops.includes(arr[i+1])) {
       console.log(arr[i]);
       arr.splice(i,2,arr[i]+arr[i+1])
-    } else if ((ops.includes(arr[i-1]) || i === 0) && arr[i] === '-') {
-      arr.splice(i,2,arr[i]+arr[i+1])
+    } else if ((['*', '/', '+', '-'].includes(arr[i-1])) && arr[i] === '-' && arr[i+1] !== '(' ) {
+      arr.splice(i,2,(arr[i]+arr[i+1]).replaceAll('--', ''));
+    } else if ((i === 0) && arr[i] === '-' && arr[i+1] !== '(' ) {
+      arr.splice(i,2,(arr[i]+arr[i+1]).replaceAll('--', ''));
     } else {
       i++;
     }
   }
+  console.log('output', arr)
 }
 
 
@@ -100,6 +108,19 @@ console.log(res1);
 let test2 = '(12* 123/(-5 + 2))';
 let res2 = calc(test2);
 console.log(res2);
+
+let test3 = '(12* 123/-(-5 + 2))';
+let res3 = calc(test3);
+console.log(res3);
+
+let test4 = '((2.33 / (2.9+3.5)*4) - -6)';
+let res4 = calc(test4);
+console.log(res4);
+
+let test5 = '(1 - 2) + -(-(-(-4)))';
+let res5 = calc(test5);
+console.log(res5);
+
 
 
 // Sleep on and come back tomorrow
