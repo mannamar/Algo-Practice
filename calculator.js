@@ -1,6 +1,8 @@
 // WIP: Evaluate mathematical expression
 // https://www.codewars.com/kata/52a78825cdfc2cfc87000005/train/javascript
 
+
+// Lookup variables
 let ops = ['*', '/', '+', '-'];
 let opFuncs = {
   '*': function mult(a, b) {
@@ -17,19 +19,39 @@ let opFuncs = {
   }
 }
 
+
+// Main function
 const calc = function (expression) {
-  // evaluate `expression` and return result
+  // Remove whitespace
   let nospaces = expression.replace(/\s+/g, '')
+
+  // Split expression into individual charachters
   let split = nospaces.split('');
+
+  // Merge consecutive digits
   mergenums(split);
   console.log(split);
+
+  // While parens exist
+    // Find index of first ')'
+    // Find index of preceeeding '('
+    // Evaluate expression between the two
+    // Splice result back into main array
+
+  // Evaluate mult/div
   evaluate(split, ['*', '/']);
   console.log(split);
+
+  // Evaluate add/sub
   evaluate(split, ['+', '-']);
   console.log(split);
+
+  // Return result
   return Number(split[0]);
 }
 
+
+// Helper functions
 function evaluate(arr, ops) {
   let i = 0;
   while (i < arr.length) {
@@ -57,6 +79,8 @@ function mergenums(arr) {
   }
 }
 
+
+// Testing
 let test1 = '2+5*2';
 let res1 = calc(test1);
 console.log(res1);
