@@ -1,4 +1,4 @@
-// WIP
+// WIP: Evaluate mathematical expression
 // https://www.codewars.com/kata/52a78825cdfc2cfc87000005/train/javascript
 
 let ops = ['*', '/', '+', '-'];
@@ -60,3 +60,22 @@ function mergenums(arr) {
 let test1 = '2+5*2';
 let res1 = calc(test1);
 console.log(res1);
+
+
+// Still need to account for parens
+// Possible ideas:
+
+// Split on parens
+// Call calc within its own definition (Recursion?)
+// If parens exist
+    // Call calc on slice of items between innermost parens
+    // Splice in result
+    // Repeat while parens exist
+
+// Non-recursive idea:
+// While parens exist
+    // Call evaluate(s) on slice of items between innermost set of parens
+    // Splice in the result
+
+// Non-recursive seems easier to code
+// All edge cases accounted for?
