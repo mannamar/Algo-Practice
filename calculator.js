@@ -79,9 +79,7 @@ function mergenums(arr) {
     if (!ops.includes(arr[i]) && !ops.includes(arr[i+1])) {
       console.log(arr[i]);
       arr.splice(i,2,arr[i]+arr[i+1])
-    } else if ((['*', '/', '+', '-'].includes(arr[i-1])) && arr[i] === '-' && arr[i+1] !== '(' ) {
-      arr.splice(i,2,(arr[i]+arr[i+1]).replaceAll('--', ''));
-    } else if ((i === 0) && arr[i] === '-' && arr[i+1] !== '(' ) {
+    } else if ( ( ['*', '/', '+', '-'].includes(arr[i-1]) || i === 0 ) && arr[i] === '-' && arr[i+1] !== '(' ) {
       arr.splice(i,2,(arr[i]+arr[i+1]).replaceAll('--', ''));
     } else {
       i++;
