@@ -1,4 +1,4 @@
-// Evaluate mathematical expressions
+// Evaluate strings as mathematical expressions
 
 
 // Lookup variables
@@ -119,6 +119,7 @@ console.log(res4);
 let test5 = '(1 - 2) + -(-(-(-4)))';
 let res5 = calc(test5);
 console.log(res5);
+
 
 // TO DO
 // Practice writing better tests

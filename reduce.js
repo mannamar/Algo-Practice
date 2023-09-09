@@ -1,11 +1,36 @@
+// Practicing reduce and object lookups
+
+
+// Given a string: 'The quick orange fox is just as quick as the quick blue hedgehog' :
+    // 1) Return the counts of each word in the string
+    // 2) Return the counts of each character in the string (excluding spaces)
+    // 3) Return the character with the highest count (excluding spaces)
+
+    
+// Variable declaration 
 const string = 'The quick orange fox is just as quick as the quick blue hedgehog';
 
-// 1
-let arr = string.toLowerCase().split('');
-console.log(arr);
+// Split string into words array
+let words = string.toLowerCase().split(' ');
+console.log(words);
 
-// 2
-let counts = arr.reduce((acc, val) => {
+// Reduce array into object of word counts
+let wordCounts = words.reduce((acc, val) => {
+  if (acc[val]) {
+    acc[val]++;
+  } else {
+    acc[val] = 1;
+  }
+  return acc;
+}, {})
+console.log(wordCounts)
+
+// Split string into char array
+let chars = string.toLowerCase().split('');
+console.log(chars);
+
+// Reduce array into object of char counts
+let charCounts = chars.reduce((acc, val) => {
   if (val === ' ') {
     return acc;
   }
@@ -16,13 +41,12 @@ let counts = arr.reduce((acc, val) => {
   }
   return acc;
 }, {})
-console.log(counts)
+console.log(charCounts)
 
-// 3
-let keys = Object.keys(counts);
-let values = Object.values(counts);
+// Find char with highest count
+let keys = Object.keys(charCounts);
+let values = Object.values(charCounts);
 let maxVal = Math.max(...values);
 console.log(maxVal);
-
-let maxChar = keys.find(key => counts[key] === maxVal);
+let maxChar = keys.find(key => charCounts[key] === maxVal);
 console.log(maxChar);

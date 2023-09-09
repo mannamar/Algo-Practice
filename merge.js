@@ -1,3 +1,7 @@
+// Merge two sorted arrays
+
+
+// Two pointers
 let merge = function(nums1, nums2) {
     let len1 = nums1.length;
     let len2 = nums2.length;
@@ -26,6 +30,8 @@ let merge = function(nums1, nums2) {
     return res;
 };
 
+
+// Alternatively with no pointers
 let merge2 = function(nums1, nums2) {
     // Make copies of the arrays just in case we don't want to mutate the originals
     nums1 = nums1.slice();
@@ -50,6 +56,8 @@ let merge2 = function(nums1, nums2) {
     return res;
 }
 
+
+// Tests
 let nums1 = [1,2,3,10,11,15,17];
 let nums2 = [3,4,5,8,12,13,20,21];
 
