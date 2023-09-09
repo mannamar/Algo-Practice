@@ -4,18 +4,10 @@
 // Lookup variables
 let ops = ['*', '/', '+', '-', '(', ')'];
 let opFuncs = {
-  '*': function mult(a, b) {
-    return Number(a) * Number(b);
-  },
-  '/': function div(a, b) {
-    return Number(a) / Number(b);
-  },
-  '+': function add(a, b) {
-    return Number(a) + Number(b);
-  },
-  '-': function sub(a, b) {
-    return Number(a) - Number(b);
-  }
+  '*': (a, b) => Number(a) * Number(b),
+  '/': (a, b) => Number(a) / Number(b),
+  '+': (a, b) => Number(a) + Number(b),
+  '-': (a, b) => Number(a) - Number(b)
 }
 
 
@@ -99,7 +91,7 @@ function mergenums(arr) {
 }
 
 
-// Testing
+// Tests
 let test1 = '2+5*2';
 let res1 = calc(test1);
 console.log(res1);
