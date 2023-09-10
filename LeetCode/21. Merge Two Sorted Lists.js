@@ -1,4 +1,5 @@
-// Merge two sorted arrays
+// Merge two sorted lists
+// https://leetcode.com/problems/merge-two-sorted-lists/
 
 
 // Two pointers
