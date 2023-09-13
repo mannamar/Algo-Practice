@@ -1,4 +1,4 @@
-// 104. Maximum Depth of Binary Tree
+// 110. Balanced Binary Tree
 // https://leetcode.com/problems/balanced-binary-tree/submissions/
 
 var isBalanced = function(root) {
