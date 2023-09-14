@@ -10,11 +10,25 @@ MyQueue.prototype.push = function(x) {
 };
 
 MyQueue.prototype.pop = function() {
-    return this.queue.shift();
+    while (this.queue.length > 0) {
+        this.temp.push(this.queue.pop());
+    }
+    let first = this.temp.pop();
+    while (this.temp.length > 0) {
+        this.queue.push(this.temp.pop());
+    }
+    return first;
 };
 
 MyQueue.prototype.peek = function() {
-    return this.queue[0];
+    while (this.queue.length > 0) {
+        this.temp.push(this.queue.pop());
+    }
+    let first = this.temp[this.temp.length-1];
+    while (this.temp.length > 0) {
+        this.queue.push(this.temp.pop());
+    }
+    return first;
 };
 
 MyQueue.prototype.empty = function() {
@@ -24,8 +38,6 @@ MyQueue.prototype.empty = function() {
 // A stack is a last-in-first-out data structure (stack of plates)
 // We need to simulate a queue using at most two stacks
     // A queue is a first-in-first-out data structure (plates on a conveyer belt)
-// Current solution passes tests but does not properly follow instructions
-    // Should be using two stacks (i.e. two arrays)
-    // Must simulate arrays as stacks
-        // Can not use the built in Array.shift() and Array.unshift() methods
-        // Can use the built in Array.push() and Array.pop() methods
+// Current solution simulates arrays as stacks
+// Need to learn how to reduce average time complexity
+    // Currently O(1) for push/empty but O(n) for pop/peek
