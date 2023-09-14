@@ -2,37 +2,38 @@
 // https://leetcode.com/problems/balanced-binary-tree/submissions/
 
 var isBalanced = function(root) {
-    // If root node is empty then tree is balanced
+    // If root is empty then it's balanced
     if (!root) {
         return true;
     }
-    // Calc max heights of left and right nodes
-    let leftHeight = calcMaxHeight(root.left);
-    let rightHeight = calcMaxHeight(root.right);
-    // If difference in max height of left and right nodes is greater than one
-    // Or if either the left or right nodes is itself unbalanced
-        // Return false
-    if ( (Math.abs(leftHeight - rightHeight) > 1) || !isBalanced(root.left) || !isBalanced(root.right)) {
-        return false;
-    } else {
-        return true;
-    }
+
+    // Calc height of root
+    height = calcHeight(root);
+
+    // If the height is not -1 then it is balanced
+    return height !== -1;
 };
 
-function calcMaxHeight(node) {
-    // If node is empty, height is 0
+function calcHeight(node) {
+    // If node is empty the height is 0
     if (!node) {
         return 0;
-    // If left and right nodes are both empty, height is 1
-    } else if (!node.left && !node.right) {
-        return 1;
     }
-    // Otherwise the height is 1 plus the max between the left and right nodes
-    return 1 + Math.max( calcMaxHeight(node.left) , calcMaxHeight(node.right) )
+    // Calc hegiht of left and right nodes
+    let heightLeft = calcHeight(node.left);
+    let heightRight = calcHeight(node.right);
+    // If left node, right node, or current node is unbalanced
+        // Return -1 (Represents unbalanced height)
+    if (heightLeft === -1 || heightRight === -1 || Math.abs(heightLeft - heightRight) > 1) {
+        return -1
+    }
+    // Else return 1 plus the larger of the left and right heights
+    return 1 + Math.max(heightLeft, heightRight);
 }
 
 // Need to write tests
-// This is a naive solution
-    // What is the current time complexity?
-    // How can it be made mroe efficient?
-        // Breadth first vs depth first?
+// This is now O(n) time
+    // Depth first
+    // Remember how to do naive solution at O(n^2) time
+        // Single recursion versus double recursion
+        // Bottom up versus top down
