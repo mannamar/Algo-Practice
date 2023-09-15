@@ -6,29 +6,25 @@ var isBalanced = function(root) {
     if (!root) {
         return true;
     }
-
-    // Calc height of root
-    height = calcHeight(root);
-
-    // If the height is not -1 then it is balanced
-    return height !== -1;
+    // Calc height of root and return the balanced property
+    return calcHeight(root).balanced;
 };
 
 function calcHeight(node) {
-    // If node is empty the height is 0
+    // If node is empty the node is balanced and the height is 0
     if (!node) {
-        return 0;
+        return  {'balanced': true, 'height': 0};
     }
-    // Calc hegiht of left and right nodes
+    // Calc height of left and right nodes
     let heightLeft = calcHeight(node.left);
     let heightRight = calcHeight(node.right);
     // If left node, right node, or current node is unbalanced
-        // Return -1 (Represents unbalanced height)
-    if (heightLeft === -1 || heightRight === -1 || Math.abs(heightLeft - heightRight) > 1) {
-        return -1
+        // Return that the node is unbalanced, height is not needed
+    if (!left.balanced || !right.balanced || Math.abs(left.height - right. height) > 1) {
+        return {'balanced': false, 'height': undefined};
     }
-    // Else return 1 plus the larger of the left and right heights
-    return 1 + Math.max(heightLeft, heightRight);
+    // Else return the node is balanced and its height
+    return {'balanced': true, 'height': 1 + Math.max(left.height, right.height)};
 }
 
 // Need to write tests
