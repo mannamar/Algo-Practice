@@ -1,32 +1,35 @@
 // 542. 01 Matrix
 // https://leetcode.com/problems/01-matrix/
 
-
-// Can NOT move diagonally in one step
-    // Need to find new approach
-    // Breadth First Search (BFS) ?
-        // Start at zeroes (instead of 1's) and move outward
-
-
-// New approach (WIP)
-// Still likely not very efficient
+// New approach - Using queue for efficency 
 
 var updateMatrix = function(mat) {
-    // Copy matrix to result matrix
-        // Replace 1's with new charachter ('?')
-    // Set target to zero
-    // While matrix contains ?'s
-        // Iterate over column of result array
-            // Iterate over rows
-                // If value at cell equals target
-                    // If adjacent cell is ?
-                        // Set cell to target + 1
-        // Incremenet target
+    // Initialize empty queue array
+    // Iterate over matrix
+        // If value is zero add coordinates to queue
+        // Else replace cell value with -1
+    // While queue contains coords
+        // Set current coords to first value from queue
+        // Get value of current coords (initial neighbor value)
+        // Create list of 4 adjacent coords
+        // Iterate over list of 4 coords
+            // Set new coords
+            // If coords in matrix range AND value is -1
+                // Set value to 1 + initial neighbor value
+                // Push these new coords to the queue to check its neighbors
     // Return result array
 };
 
+// Breadth First Search (BFS)
+    // Start at zeroes (instead of 1's) and move outward
+    // Results in O(m*n) time complexity
+        // Each cell of the matrix is only ever enqueued once
+// Brain dead, code later
 
-// Previous approach
+
+
+// Previous incorrect approach
+// Diagonals DO NOT count as one step
 
 var updateMatrix = function(mat) {
     // Create result matrix
