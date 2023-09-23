@@ -44,3 +44,8 @@ var threeSum = function(nums) {
 // Is sorting array absolutely necessary?
     // For now needed to avoid dupes
     // Maybe use a set to keep track instead?
+// Time Comlexity?
+    // Initial sort is O(n * log(n))
+    // O(n^2) for finding the ThreeSums
+    // Overall O((n * log(n)) + n^2)
+        // Reduces down to O(n^2)
