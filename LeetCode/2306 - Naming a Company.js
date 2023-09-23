@@ -3,34 +3,54 @@
 
 
 var distinctNames = function(ideas) {
-    // Create set of distinct words
-    let ideaSet = new Set(ideas);
+    // Initialize hash
+    let ideaHash = {};
+
+    // Iterate over ideas array
+        // Create set of suffixes with first letters as keys
+    for (let i = 0; i < ideas.length; i++) {
+        let key = ideas[i][0];
+        let val = ideas[i].slice(1);
+        if (ideaHash[key] === undefined) {
+            ideaHash[key] = new Set();
+        }
+        ideaHash[key].add(val)
+    }
 
     // Initialize result
     let count = 0;
 
-    // For ever word in the ideas array
-        // Iterate over the ideas array
-            // Create the new words
-            // If neither of the new words are already in the ideas set
-                // Inrecement result counter
-    for (let i = 0; i < ideas.length; i++) {
-        for (let j = i + 1; j < ideas.length; j++) {
-            console.log(ideas[i], ideas[j]);
-            let word1 = ideas[i];
-            let word2 = ideas[j];
-            let [newWord1, newWord2] = [word1[0] + word2.slice(1), word2[0] + word1.slice(1)];
-            if (!ideaSet.has(newWord1) && !ideaSet.has(newWord2)) {
-                count++;
+    // For every set in the hash (Set1)
+        // Iterate over the hash (Set2)
+            // Initialize dupes to 0
+            // If the sets are not the same
+                // Iterate over Set2
+                    // If the current item is also in Set 1
+                        // Iterate dupes
+            // Add unique values to result count
+    for (let key1 in ideaHash) {
+        for (let key2 in ideaHash) {
+            let dupes = 0;
+            if (key1 !== key2) {
+                for (let suffix of ideaHash[key2]) {
+                    if (ideaHash[key1].has(suffix)) {
+                        dupes++;
+                    }
+                }
+                let uniques1 = ideaHash[key1].size - dupes;
+                let uniques2 = ideaHash[key2].size - dupes;
+                count = count + (uniques1 * uniques2);
             }
         }
     }
 
     // Return result
-    return count*2;
+    return count;
 };
 
 
-// Naive solution
-    // O(n^2) time complexity
-    // Passes base test cases but so slow that submission timesout
+// Solution is a still a little slow
+// No idea what the time complexity is
+    // O(n) to create initial hash
+    // O(26^2) [i.e. constant time] for iterating over sets
+        // BUT What about iterating over contents of each set?
