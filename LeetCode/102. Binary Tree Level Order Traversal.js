@@ -32,3 +32,10 @@ var levelOrder = function(root) {
         getVals(node.right, index + 1);
     }
 };
+
+// NOTES
+// Time complexity and space complexity are both O(n)
+    // Each node is looped over exactly once
+    // Result array stores a value for each node
+// Current solution uses a DFS
+    // May also be possible to do this via BFS using a queue
