@@ -2,27 +2,37 @@
 // https://leetcode.com/problems/remove-duplicate-letters
 
 
-// WIP - May not be possible to do via single loop
 var removeDuplicateLetters = function(s) {
-    let counts = {}
+
+    // Create lastIndex hash
+    let lastIndex = {}
     for (let i = 0; i < s.length; i++) {
-        console.log('\nindex:', i, s[i]);
-        console.log('start:', s);
-        if (counts[s[i]] !== undefined) {
-            let oldIndex = counts[s[i]];
-            let newIndex = i;
-            let indexToRemove = newIndex;
-            if (s[oldIndex] > s[oldIndex+1]) {
-                indexToRemove = oldIndex;
-                counts[s[i]] = i;
-            }
-            console.log('itr:', indexToRemove)
-            s = s.slice(0, indexToRemove) + s.slice(indexToRemove+1);
-            i--;
-        } else {
-            counts[s[i]] = i;
-        }
-        console.log('end:', s);
+        lastIndex[s[i]] = i;
     }
-    return s;
+
+    // Instantiate stack for result
+    let result = [];
+    let added = new Set();
+
+    // Iterate over string
+    for (let i = 0; i < s.length; i++) {
+        let letter = s[i];
+        // console.log(letter)
+        // console.log(result[result.length - 1] > letter)
+        if (added.has(letter)) {
+            continue;
+        }
+        while (result[result.length - 1] > letter && lastIndex[result[result.length - 1]] > i) {
+            added.delete(result.pop());
+        }
+        result.push(letter);
+        added.add(letter);
+        // console.log(result)
+    }
+
+    return result.join('');
 };
+
+// Solved but needs better pseudocode
+// Also needed lots of trial and error
+    // Sleep on on and retry
