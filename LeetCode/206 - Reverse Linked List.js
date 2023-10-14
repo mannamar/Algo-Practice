@@ -56,3 +56,11 @@ var reverseList = function(head) {
     }
     return prev;
 };
+
+
+// NOTES
+// Two sweep is O(2 * n) time and O(n) space
+    // Big O time reduces down to O(n)
+// Single sweep is O(n) time and O(1) space
+    // Single sweep is faster and uses less memory
+// Also possible to solve recursively
