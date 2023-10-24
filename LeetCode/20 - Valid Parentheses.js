@@ -34,3 +34,7 @@ var isValid = function(s) {
     // If stack is empty, then parens were all valid
     return stack.length === 0;
 };
+
+// NOTES
+// O(n) time and space complexity
+// Stack is first-in/first-out data structure
