@@ -30,3 +30,10 @@ var mergeTwoLists = function(node1, node2) {
     // Return initial head of result list
     return result.next;
 };
+
+// NOTES
+// O(m + n) time complexity
+    // Worst case, every value is iterated over once
+// O(1) space complexity
+    // Extra space does not depend on input size
+    // Result does not need extra memory since input values are simply relinked
