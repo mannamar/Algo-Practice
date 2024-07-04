@@ -2,35 +2,37 @@
 // https://leetcode.com/problems/longest-substring-without-repeating-characters/
 
 var lengthOfLongestSubstring = function(s) {
-    if (!s) {
-        return 0;
-    }
-    let start = -1;
-    let end = 1;
-    let longest = 1;
+    // Initialize variables
+    let left = 0;
+    let right = 0;
+    let chars = new Set();
+    let max = 0;
 
-    while (end < s.length) {
-        start++;
-        if (end === start) {
-            end++;
+    // While right pointer is in bounds of string
+    while (right < s.length) {
+        // While set contains right char
+        while (chars.has(s[right])) {
+            // Remove left char from set
+            // And increment left pointer
+            chars.delete(s[left]);
+            left++;
         }
-        if (end >= s.length) {
-            break;
+        chars.add(s[right]);
+        // Calc length of substring
+        let len = right - left + 1;
+        // Check if length is greater than max
+        if (len > max) {
+            max = len;
         }
-        console.log(s.slice(start,end) , (s[end]) )
-        while(!s.slice(start,end).includes(s[end])) {
-            end++;
-            if (end > s.length) {
-                break;
-            }
-        }
-        let currLen = s.slice(start,end).length;
-        if (currLen > longest) {
-            longest = currLen;
-        }
+        // Increment right pointer
+        right++;
     }
-    return longest;
+    return max;
 };
 
-// Solved but slow
-// Used a lot of trial and error to catch edge cases
+// NOTES
+// Sliding window algorithm (two pointers)
+// O(n) runtime
+    // Max two passes over string, once for each pointer
+// O(n) memory
+    // Set may need to store each char of string
