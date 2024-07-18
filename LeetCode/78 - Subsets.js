@@ -31,3 +31,9 @@ var subsets = function(nums) {
 // Memory? Is using a copy less efficient than backtracking?
 // DFS recursive solution
     // Other solutions possible but would be similar runtime
+
+                //      _
+                //     / \
+                //    _   1
+                //   / \ / \
+                //  _  2 1 1,2
