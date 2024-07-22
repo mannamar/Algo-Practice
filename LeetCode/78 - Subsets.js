@@ -32,8 +32,32 @@ var subsets = function(nums) {
 // DFS recursive solution
     // Other solutions possible but would be similar runtime
 
-                //      _
-                //     / \
-                //    _   1
-                //   / \ / \
-                //  _  2 1 1,2
+//          _
+//         / \
+//        _   1
+//       / \ / \
+//      _  2 1 1,2
+
+
+                
+// Backtracking solution
+var subsets = function(nums) {
+    let res = [];
+    getSubsets(0, []);
+    return res;
+
+    function getSubsets(i, arr) {
+        if (i >= nums.length) {
+            res.push(arr.slice());
+            return;
+        }
+
+        getSubsets(i + 1, arr)
+        arr.push(nums[i]);
+        getSubsets(i + 1, arr);
+        arr.pop()  // Backtrack (to previous descision node)
+    }
+};
+
+// Backtracking has less memory overhead
+    // Single solution array (arr) used throughout callstack
