@@ -31,3 +31,9 @@ var combinationSum = function(candidates, target) {
         getCombinations(i+1, arr, sum);
     }
 };
+
+
+// NOTES
+// Time complexity will always be at least (and possibly a lot more than) O(2^n)
+    // O(2^t) where t is the target may be a better estimation
+        // Assumes worst case of 1 being in the candidates array
