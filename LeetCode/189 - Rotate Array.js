@@ -27,6 +27,8 @@ var rotate = function(nums, k) {
 
 // Optimized solution
 var rotate = function(nums, k) {
+    // Reduce shift count if longer than nums array
+    let k = k % nums.length;
     // Reverse entire array
     reverse(nums, 0, nums.length - 1);
     // Reverse first k nums
