@@ -40,3 +40,11 @@ var trap = function(height) {
     // Not currently accounting properly for right height
     // Currently making the assumption there can not be water trapped when right walls are lower than current wall
     // Likely need to set right pointer to end and work towards the middle
+
+// Time complexity
+    // Brute force is o(n^2)
+    // Best case O(n) via two pointer
+
+// Space complexity
+    // Naive solution uses O(n) space
+    // Best case of O(1) is possible
